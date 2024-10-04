@@ -25,7 +25,9 @@ class Calculations:
 
     @classmethod
     def getLatest(cls) -> Calculation:
-        return cls.history[-1] if cls.history is not None else None
+        if cls.history:
+            return cls.history[-1]
+        return None
     
     @classmethod
     def findByOperation(cls, operation_name: str) -> List[Calculation]: 

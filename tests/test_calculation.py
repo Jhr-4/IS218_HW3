@@ -1,23 +1,23 @@
 '''Test Operations & Calculation'''
-from calculator.Calculation import Calculation
-from calculator.operations import add, subtract, multiply, divide
 from decimal import Decimal
 import pytest
+from calculator.Calculation import Calculation
+from calculator.operations import add, subtract, multiply, divide
 
 @pytest.mark.parametrize("a, b, operation, expected", [
-    (Decimal('50'), Decimal('50'), add, Decimal('100'))
-    (Decimal('50.1'), Decimal('50'), add, Decimal('100.1'))
-    (Decimal('10'), Decimal('50'), subtract, Decimal('-40'))
-    (Decimal('50'), Decimal('10.1'), subtract, Decimal('39.9'))
-    (Decimal('30'), Decimal('10'), multiply, Decimal('300'))
-    (Decimal('3.14'), Decimal('1'), multiply, Decimal('3.14'))
-    (Decimal('50'), Decimal('50'), divide, Decimal('1'))
-    (Decimal('100'), Decimal('50'), divide, Decimal('2'))
-
+    (Decimal('50'), Decimal('50'), add, Decimal('100')),
+    (Decimal('50.1'), Decimal('50'), add, Decimal('100.1')),
+    (Decimal('10'), Decimal('50'), subtract, Decimal('-40')),
+    (Decimal('50'), Decimal('10.1'), subtract, Decimal('39.9')),
+    (Decimal('30'), Decimal('10'), multiply, Decimal('300')),
+    (Decimal('3.14'), Decimal('1'), multiply, Decimal('3.14')),
+    (Decimal('50'), Decimal('50'), divide, Decimal('1')),
+    (Decimal('100'), Decimal('50'), divide, Decimal('2')),
 ])
+
 def test_calculation_operations(a, b, operation, expected):
     '''Tests parametrized calculations'''
-    assert Calculation(a, b, operation).perform() == expected, "Failed: " + a + " " + operation + " " + b + ", Expected: " + expected  
+    assert Calculation(a, b, operation).perform() == expected, "Failed: " + a + " " + operation + " " + b + ", Expected: " + expected
 
 
 def test_calculation_repr():

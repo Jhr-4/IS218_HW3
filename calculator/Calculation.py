@@ -20,4 +20,4 @@ class Calculation:
         return self.operation(self.a, self.b)
     
     def __repr__(self):
-        return "Calculation(" + self.a +", "+ self.b +", "+ self.operation.__name__+ ")"
+        return "Calculation(" + str(self.a) +", "+ str(self.b) +", "+ self.operation.__name__ + ")"
