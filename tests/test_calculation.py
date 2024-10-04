@@ -20,3 +20,4 @@ def test_divide_by_zero():
     '''Test that division by 0 gives ValueError'''    
     with pytest.raises(ValueError, match="Dividing by 0: Undefined"):
         Calculation(Decimal('50'), Decimal('0'), divide).perform()
+
