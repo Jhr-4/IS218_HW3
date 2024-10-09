@@ -13,22 +13,22 @@ def generate_test_data(num_records):
         'multiply': multiply,
         'divide': divide
     }
-    for _ in range(num_records):
-        a = Decimal(fake.random_number(digits=2))
-        b = Decimal(fake.random_number(digits=2)) if _ % 4 != 3 else Decimal(fake.random_number(digits=1))
-        operation_name = fake.random_element(elements=list(operation_mappings.keys()))
-        operation_func = operation_mappings[operation_name]
+    for num in range(num_records): # Range is from 0 to what user specifies 
+        a = Decimal(fake.random_number(digits=2)) # create a random 2 digit in that range
+        b = Decimal(fake.random_number(digits=2)) if num % 4 != 3 else Decimal(fake.random_number(digits=1)) #rankdom 2 digit or 1 digit number (if num/4 = 3)
+        operation_name = fake.random_element(elements=list(operation_mappings.keys())) #pick random string 
+        operation_func = operation_mappings[operation_name] #make the oper_func equal to the value of the string which refers to the actual function 
         
-        if operation_func == divide:
+        if operation_func == divide: # if 0 change it to 1
             b = Decimal('1') if b == Decimal('0') else b
         
-        try:
-            if operation_func == divide and b == Decimal('0'):
-                expected = "ZeroDivisionError"
+        try: 
+            if operation_func == divide and b == Decimal('0'): # if #/0 give expected = "zerodivisionerror" just incase...
+                expected = "Dividing by 0: Undefined"
             else:
-                expected = operation_func(a, b)
+                expected = operation_func(a, b) # expected = the opperation performed 
         except ZeroDivisionError:
-            expected = "ZeroDivisionError"
+            expected = "Dividing by 0: Undefined" 
         
         yield a, b, operation_name, operation_func, expected
 
