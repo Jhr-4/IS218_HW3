@@ -9,5 +9,9 @@
 ### [Faker](https://github.com/Jhr-4/IS218_HW3/tree/faker)
 ### [UserInput](https://github.com/Jhr-4/IS218_HW3/tree/userInput)
 
+# IS218 HW5
+### [Commands](https://github.com/Jhr-4/IS218_HW3/tree/commands)
+### [Plugins](https://github.com/Jhr-4/IS218_HW3/tree/plugins)
 
+# Everything Combined
 ### [Main](https://github.com/Jhr-4/IS218_HW3/tree/main)
