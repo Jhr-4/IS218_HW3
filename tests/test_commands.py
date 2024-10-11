@@ -1,7 +1,5 @@
 import pytest
 from app import App
-from app.commands.exit import ExitCommand
-from app.commands.help import HelpCommand
 
 def test_AppHelpCommand(capfd, monkeypatch):
     inputs = iter(['help', 'exit'])

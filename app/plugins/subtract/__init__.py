@@ -1,6 +1,4 @@
-import sys
 from app.commands import Command
-from decimal import Decimal, InvalidOperation
 from calculator import Calculator
 
 class SubtractCommand(Command):

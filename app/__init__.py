@@ -1,27 +1,29 @@
+import pkgutil
+import importlib
 from app.commands import CommandHandler
-from app.commands.exit import ExitCommand
-from app.commands.help import HelpCommand
-from app.commands.add import AddCommand
-from app.commands.subtract import SubtractCommand
-from app.commands.multiply import MultiplyCommand
-from app.commands.divide import DivideCommand
-
+from app.commands import Command
 
 class App:
     def __init__(self):
         self.commandHandler = CommandHandler()
 
+    def load_plugins(self):
+        plugins_package = 'app.plugins' #the path basically app/plugins
+        for _, plugin_name, is_pkg in pkgutil.iter_modules([plugins_package.replace('.', '/')]):  
+            if is_pkg:  #makes sure its a folder/package
+                plugin_module = importlib.import_module(f'{plugins_package}.{plugin_name}')
+                for item_name in dir(plugin_module):
+                    item = getattr(plugin_module, item_name)
+                    try:
+                        if issubclass(item, (Command)):  # checks if it command is subclass
+                            self.commandHandler.registerCommand(plugin_name, item())
+                    except TypeError:
+                        continue  #if not its ignored
+
 
     def start(self):
-        self.commandHandler.registerCommand("exit", ExitCommand())
-        self.commandHandler.registerCommand("help", HelpCommand())
-        self.commandHandler.registerCommand("add", AddCommand())
-        self.commandHandler.registerCommand("subtract", SubtractCommand())
-        self.commandHandler.registerCommand("multiply", MultiplyCommand())
-        self.commandHandler.registerCommand("divide", DivideCommand())
-
-
         print("Type \"exit\" to exit ")
+        self.load_plugins()
         while True:
             userInput = input(">>> ").strip()
             userInput = userInput.split() #turn to comma list
