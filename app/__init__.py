@@ -2,10 +2,28 @@ import pkgutil
 import importlib
 from app.commands import CommandHandler
 from app.commands import Command
+from dotenv import load_dotenv
+import os
 
 class App:
     def __init__(self):
+        load_dotenv('.env')
+        self.settings = {}
+        
+        self.settings = self.load_environment_variables()
+        self.settings.setdefault('ENVIRONMENT', 'PRODUCTION')
+
+        #FOR TESTING
+        print(self.settings['ENVIRONMENT'])
+
         self.commandHandler = CommandHandler()
+
+
+    def load_environment_variables(self):
+        settings = {}
+        for key, value in os.environ.items():
+            settings[key] = value
+        return settings
 
     def load_plugins(self):
         plugins_package = 'app.plugins' #the path basically app/plugins
