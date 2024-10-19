@@ -1,3 +1,5 @@
+import logging
+import sys
 from decimal import Decimal, InvalidOperation
 from abc import ABC, abstractmethod
 
@@ -24,10 +26,14 @@ class CommandHandler:
                 command.execute() 
                 
         except KeyError:
+            logging.info("Invalid Command: " + commandName)
             print("Invalid Command: " + commandName)
         except ZeroDivisionError as e:
-           print(e)   #error message was handed earlier 
+           logging.info(e)   #error message was handed earlier (in divide operation)
+           print(e)
         except ValueError as e:
-           print(e)   #error message was handed earlier 
+           logging.info(e)   #error message was handed earlier (in divide operation)
+           print(e)
         except InvalidOperation:
+            logging.info("Invalid Operands: '" + operands[0] + "' or '" + operands[1]+ "' is not a valid number.")
             print("Invalid Operands: '" + operands[0] + "' or '" + operands[1]+ "' is not a valid number.")
