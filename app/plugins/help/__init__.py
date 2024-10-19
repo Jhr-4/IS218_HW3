@@ -1,8 +1,9 @@
 from app.commands import Command
+import logging
 
 class HelpCommand(Command):
     def execute(self):
-        print("Commands:\
+        logging.info("\n Commands:\
               \n- help: This menu. \
               \n- exit: Exit the app. \
               \n- add <operand1> <operand2>: Add two numbers.\
