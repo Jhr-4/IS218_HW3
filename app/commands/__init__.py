@@ -26,10 +26,14 @@ class CommandHandler:
                 command.execute() 
                 
         except KeyError:
-            logging.warning("Invalid Command: " + commandName)
+            logging.info("Invalid Command: " + commandName)
+            print("Invalid Command: " + commandName)
         except ZeroDivisionError as e:
-           logging.warning(e)   #error message was handed earlier (in divide operation)
+           logging.info(e)   #error message was handed earlier (in divide operation)
+           print(e)
         except ValueError as e:
-           logging.warning(e)   #error message was handed earlier (in divide operation)
+           logging.info(e)   #error message was handed earlier (in divide operation)
+           print(e)
         except InvalidOperation:
-            logging.warning("Invalid Operands: '" + operands[0] + "' or '" + operands[1]+ "' is not a valid number.")
+            logging.info("Invalid Operands: '" + operands[0] + "' or '" + operands[1]+ "' is not a valid number.")
+            print("Invalid Operands: '" + operands[0] + "' or '" + operands[1]+ "' is not a valid number.")

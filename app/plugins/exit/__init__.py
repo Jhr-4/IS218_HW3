@@ -5,4 +5,4 @@ import logging
 class ExitCommand(Command):
     def execute(self):
         logging.info("Exited with exit command")
-        sys.exit(0)
+        sys.exit("Exited")

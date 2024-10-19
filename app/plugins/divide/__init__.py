@@ -6,6 +6,8 @@ class DivideCommand(Command):
     def execute(self, a, b):
         try:
             calculate = Calculator.divide(a, b)
-            logging.info("The result of " + str(a) + " divide " + str(b) + " is " + str(calculate))
+            logging.info(f"Command Divide: {a} / {b} = {calculate}")
+            print("The result of " + str(a) + " divide " + str(b) + " is " + str(calculate))
         except ZeroDivisionError:
-            logging.warning("Dividing by 0: Undefined")
+            logging.info("Dividing by 0: Undefined")
+            print("Dividing by 0: Undefined")

@@ -3,7 +3,8 @@ import logging
 
 class HelpCommand(Command):
     def execute(self):
-        logging.info("\n Commands:\
+        logging.info(f"Help Command Used.")
+        print("Commands:\
               \n- help: This menu. \
               \n- exit: Exit the app. \
               \n- add <operand1> <operand2>: Add two numbers.\

@@ -60,25 +60,26 @@ class App:
             item = getattr(plugin_module, item_name)
             if isinstance(item, type) and issubclass(item, Command) and item is not Command:
                 self.commandHandler.registerCommand(plugin_name, item())
-                logging.debug("Registered" + item_name + " From " + plugin_name + " Plugin.")
+                logging.info("Registered" + item_name + " From " + plugin_name + " Plugin.")
 
     def start(self):
         logging.info("Application started. Type \"exit\" to exit.")
         self.load_plugins()
         while True:
-            userInput = input(">>> ").strip()
-            userInput = userInput.split() #turn to comma list
             try:
+                userInput = input(">>> ").strip()
+                userInput = userInput.split() #turn to comma list
                 command = userInput.pop(0) # command = first item  (either help/exit or operator)
                 operands = userInput # rest = operands (or blank)  (it will hold all the args but only the first two are used in execute)
                 self.commandHandler.executeCommand(command, operands)
 
             except IndexError: # if no arguments or missing arguments
-                logging.warning("Arguments were missing. Use help for the format.")
+                logging.info("Arguments were missing. Use help for the format.")
+                print("Arguments were missing. Use help for the format.")
             except Exception as e:
-                logging.critical("Unhandled Error: " + str(e))
+                logging.warning("Unhandled Error: " + str(e))
             except KeyboardInterrupt:
                 logging.info("Application interrupted and exiting gracefully.")
                 sys.exit(0)
-            #finally:
-            #    logging.debug("Application shutdown.") #uncomment/enable if needed
+            finally:
+                logging.info("Application shutdown.")
