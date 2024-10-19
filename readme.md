@@ -13,5 +13,9 @@
 ### [Commands](https://github.com/Jhr-4/IS218_HW3/tree/commands)
 ### [Plugins](https://github.com/Jhr-4/IS218_HW3/tree/plugins)
 
+# IS218 HW6
+### [Github Actions](https://github.com/Jhr-4/IS218_HW3/tree/HW6_githubActions)
+### [.env Variables & Logging](https://github.com/Jhr-4/IS218_HW3/tree/HW6_logging)
+
 # Everything Combined
 ### [Main](https://github.com/Jhr-4/IS218_HW3/tree/main)
